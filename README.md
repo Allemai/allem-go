@@ -19,26 +19,18 @@ Two operations. `Check` is the pre-flight gate; `Log` is fire-and-forget.
 
 ## Getting it
 
-**This module is not published yet.** A Go module resolves from a tagged Git ref
-through `proxy.golang.org`, which needs a public repository (or a documented
-`GOPRIVATE` path) and a tag — decisions recorded in
-[`docs/go-sdk-report.md`](../../docs/go-sdk-report.md) rather than taken here.
-`scripts/gates.py` declares it `NOT_PUBLISHED` with an owner, and a test fails if
-the console ever shows an install line for it.
-
-When it is published this will work:
-
-```text
-go get github.com/Allemai/allem-go      # NOT YET — see above
-```
-
-Until then, from a checkout:
-
 ```bash
-go mod edit -require=github.com/Allemai/allem-go@v0.0.0
-go mod edit -replace=github.com/Allemai/allem-go=/path/to/allem/sdk/allem-go
-go mod tidy
+go get github.com/Allemai/allem-go@latest
 ```
+
+Then import it:
+
+```go
+import allem "github.com/Allemai/allem-go"
+```
+
+Requires Go 1.22 or newer. The module resolves from `proxy.golang.org` like any
+public Go module; no extra configuration is needed.
 
 Those three lines are executed by
 `backend/tests/test_go_sdk_parity.py::test_the_readme_install_lines_actually_work`,
